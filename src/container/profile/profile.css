@@ -1,0 +1,42 @@
+
+.left-info {
+	float: left;
+	padding-top: 10px;
+	width: 40%;
+}
+.left-info img {
+	max-width: 300px;
+	max-height: 300px;
+
+}
+.left-info h2 {
+	float: right;
+	width: 100%;
+}
+.left-info p {
+	float: right;
+	width: 100%;
+}
+.right-info {
+	width: 60%;
+	padding-left: 10px;
+	float: right;
+	padding-top: 50px;
+}
+.lable-info{
+	float: left;
+	width: 40%;
+}
+.value-info {
+	float: right;
+	width: 60%;
+	padding-left: 10px;
+	display: inline-flex;
+}
+.info{
+	float: left;
+	width: 100%;
+}
+/*.right-info p{
+	float: left;
+}*/

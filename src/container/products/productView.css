@@ -1,0 +1,39 @@
+.product-product .photo img {
+	max-width: 300px;
+    height: 300px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+.right-info {
+	width: 60%;
+	padding-left: 10px;
+	float: right;
+	padding-top: 50px;
+}
+
+/*h3{
+	float: left;
+	width: 50%;
+}
+.name-product .price {
+	float: left;
+	width: 40%;
+}
+.value-info {
+	float: right;
+	width: 60%;
+	padding-left: 10px;
+	display: inline-flex;
+}
+.info{
+	float: left;
+	width: 100%;
+}*/
+
+.product-form label {
+	float: left;
+	padding-right: 10px;
+}
