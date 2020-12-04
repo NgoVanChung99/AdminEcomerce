@@ -7,8 +7,6 @@ first command
 3. npm start
 
 user for login
-user super_admin@test.com
-pass super_admin
+user maysporer2@gmai.com
+pass 123456789
 
-web admin
-https://oauth-242602.firebaseapp.com/
