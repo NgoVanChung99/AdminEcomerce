@@ -29,11 +29,12 @@ export const userFetch = () => {
 //http://3.25.210.151/api/admin/user?limit=100
 export const userAddAsync = (params) => {
     return dispatch => {
+        alert("add user")
         dispatch(userAdd())
         try {
-            return service().put('/product_create', params).then((val) => {
+            return service().post('/api/Admin/User', params).then((val) => {
                 dispatch(userSave(true))
-                return {status: true, id: val.data._id}
+                return {status: true, id: val.data.id}
             }).catch(() => {
                 dispatch(userSave(false))
                 return false
@@ -78,7 +79,7 @@ export const userDelete = (id, list) => {
     return dispatch => {
         dispatch(userStart('delete'))
         try {
-            service().delete(`/product_delete?_id=${id}`, ).then(() => {
+            service().delete(`/api/Admin/User/${id}`, ).then(() => {
                 dispatch(userSuccess(list, 'delete'))
                 dispatch(userStatusDelete(true))
             }).catch(() => dispatch(userStatusDelete(false)))

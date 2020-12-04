@@ -73,7 +73,8 @@ const UserList = (props) => {
                             <div className="card-user">
                                 { 
                                     dataList.list.map( user => <User key={user.id} user={user} /> )
-                                }     
+                                } 
+                                  
                             </div>              
                         
                     </div>

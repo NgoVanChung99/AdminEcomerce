@@ -18,7 +18,7 @@ export const productFetch = () => {
     return dispatch => {
         dispatch(productStart())
         try {
-            service().get('/api/Admin/Product?limit=10').then((val) => {
+            service().get('/api/Admin/Product?limit=50').then((val) => {
                 dispatch(productSuccess(val.data.products))
                 console.log("totalPage"+val.data.totalPage)
             })
@@ -95,7 +95,7 @@ export const productDelete = (id, list) => {
     return dispatch => {
         dispatch(productStart('delete'))
         try {
-            service().delete(`/product_delete?_id=${id}`, ).then(() => {
+            service().delete(`/api/Admin/Product/${id}`, ).then(() => {
                 dispatch(productSuccess(list, 'delete'))
                 dispatch(productStatusDelete(true))
             }).catch(() => dispatch(productStatusDelete(false)))

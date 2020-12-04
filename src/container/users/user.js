@@ -27,6 +27,7 @@ class User extends Component {
                 <div className="photo">
                     <Lazy>
                         <img id={objectArray[0] } style={{width:100}} src={objectArray[1]} alt={objectArray[2]}/>
+                        
                     </Lazy>
                 </div>
                 <div className="name">
@@ -40,3 +41,7 @@ class User extends Component {
 }
 
 export default User;
+
+// <div className="action-icon">
+//     <Icon type="more" onClick ={console.log("ok")}/>  
+// </div>

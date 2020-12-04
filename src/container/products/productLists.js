@@ -36,7 +36,8 @@ const ProductList = (props) => {
 
     const handleDelete = async (_id) => {
         const list = await dataList.list.filter(val => val._id !== _id)
-        listDelete(_id, list)
+        
+        (_id, list)
     }
 
  

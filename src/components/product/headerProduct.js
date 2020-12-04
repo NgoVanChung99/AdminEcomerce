@@ -1,9 +1,11 @@
 import React from 'react';
 import { Row, Typography, Button } from 'antd'
 import { Link } from 'react-router-dom'
+import { ModalProduct } from '../../components'
+
 const { Title } = Typography;
 
-const Header = ({ title, link, text,path}) => (
+const Header = ({ title, link, text,path ,func}) => (
     <div>
         
         <Row justify="space-between" type="flex">
@@ -11,6 +13,9 @@ const Header = ({ title, link, text,path}) => (
             <div>
                 <Button type="primary" style={{ marginTop: 7, marginRight: 10 }} id="button-direct">
                     <Link to={link}>{text}</Link>
+                </Button>
+                <Button type="primary" style={{ marginTop: 7, marginLeft: 20 }} >
+                    <ModalProduct funcs={() => func.delete(path)}/>
                 </Button>
                 <Button type="primary" style={{ marginTop: 7, marginLeft: 20 }} >
                     <Link to={`/products/productAddEdit/${path}`}>EDIT</Link>

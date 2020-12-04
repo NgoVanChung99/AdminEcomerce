@@ -19,9 +19,20 @@ const ProductView = (props) => {
     const { 
         productEditGet,
         loadingEdit,
-        productEdit
+        productEdit,
+        listDelete
     } = props
     // const { getFieldDecorator } = props.form;
+
+
+    const handleDelete = async (id) => {
+        //const list = await initData.filter(val => val.id !== id)
+        listDelete(id);
+        
+        
+        //window.location.reload(true);
+       
+    }
 
     useEffect(() => {
         if(idParam && initData === false){
@@ -74,7 +85,9 @@ const ProductView = (props) => {
             {loadingEdit && <Icon type="loading" style={{ fontSize: '100px' }} />}
             {
                 !loadingEdit &&  <Form className="product-form" >
-                <HeaderProduct title={initData ? "Product " + initData.name : "ProductCreate"} text="BACK" link="/products/productList" path ={initData.id}/>
+                <HeaderProduct title={initData ? "Product " + initData.name : "ProductCreate"} text="BACK" link="/products/productList" path ={initData.id} func={{
+                    delete: (id) => handleDelete(initData.id),
+                }} />
                 <div className="product-product" key ={initData.id}>
                     <div className= "left-info-product">
                         <div className="photo">
@@ -124,7 +137,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {    
-        productEditGet: (params) => dispatch(actions.getProductEditData(params)),     
+        productEditGet: (params) => dispatch(actions.getProductEditData(params)),
+        listDelete: (params) => dispatch(actions.productDelete(params)),    
     }
 }
 

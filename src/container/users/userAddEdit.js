@@ -46,15 +46,24 @@ const UserAddEdit = (props) => {
     }
 
     const handleSubmit = e => {
+        alert("1")
+
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
             if(userDescription.match('<p></p>')){
+
+                //alert("2")
+
                 setValidate(false)
                 return
             }
 
-            if (!err && userDescription !== "") {
+            if (!err ) {
+
+                //alert("3")
                 if(idParam){
+                    //alert("4")
+
                     let formData = new FormData()
                     formData.append('name', values.name)
                     formData.append('productQuantitys', values.productQuantity)
@@ -84,33 +93,51 @@ const UserAddEdit = (props) => {
     
                     }
                 }else{
-                    let formData = new FormData()
-                    formData.append('name', values.name)
-                    formData.append('productQuantitys', values.productQuantity)
-                    formData.append('userDescriptions', userDescription)
+                    //alert("5")
+                    //let formData = new FormData()
+                    // formData.append('name', values.name)
+                    // formData.append('productQuantitys', values.productQuantity)
+                    // formData.append('userDescriptions', userDescription)
+                    var userAdd = 
+                        {
+                          "email": values.email,
+                          "password": values.password,
+                          "name": values.name,
+                          "gender": true,
+                          "phone": values.phone
+                        };
+                    
                     try {
-                        const saveData =  await save(formData)
-                        if (imageFile !== null && !!saveData.id) {
-                            handleUpload(saveData.id)
-                        }
+                        const saveData =  await save(userAdd)
+                        // if (imageFile !== null && !!saveData.id) {
+                        //     handleUpload(saveData.id)
+                        // }
                         if(saveData) {
+
+                            //alert("6")
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
-                                    props.history.push('/products/productList')
+                                    props.history.push('/users/userList')
                                 },
                                 onCancel() { },
                             });
                         } else{
+
+                            //alert("7")
                             Modal.error({
-                                content: 'please check productName duplicate',
+                                content: 'please check user duplicate',
                             });
                         }
                     } catch (error) {
+
+                        //alert("8")
                         throw error
                     }
                 }
             }else{
+
+                //alert("9")
                 setValidate(false)
             }
         });
@@ -120,7 +147,7 @@ const UserAddEdit = (props) => {
         if(idParam && initData === false){
             userEditGet(idParam).then(val => {
                 setInit(val)
-                setUserDescription(val.userDescription)
+                setUserDescription(val.id)
             })
             setValidate(true)
         }
@@ -180,21 +207,10 @@ const UserAddEdit = (props) => {
                             )}
                         </Form.Item>
 
-                        <Form.Item>
-                            {getFieldDecorator('phone', {
-                                rules: [{ required: true, message: 'Please input your prodcutName!' }],
-                                initialValue: initData ? initData.phone: null
-                            })(
-                                <Input
-                                    prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder="Phone"
-                                    maxLength={100}
-                                />,
-                            )}
-                        </Form.Item>
+                        
                         <Form.Item>
                             {getFieldDecorator('email', {
-                                rules: [{ required: true, message: 'Please input your userName!' }],
+                                rules: [{ required: true, message: 'Please input your email!' }],
                                 initialValue: initData ? initData.email: null
                             })(
                                 <Input
@@ -205,13 +221,14 @@ const UserAddEdit = (props) => {
                             )}
                         </Form.Item>
                         <Form.Item>
-                            {getFieldDecorator('Address', {
-                                rules: [{ required: true, message: 'Please input your Address!' }],
-                                initialValue: initData ? initData.address: null
+                            {getFieldDecorator('password', {
+                                rules: [{ required: true, message: 'Please input your password!' }],
+                                initialValue: initData ? initData.password: null
                             })(
                                 <Input
                                     prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder="Address"
+                                    type="password"
+                                    placeholder="password"
                                     maxLength={100}
                                 />,
                             )}
@@ -224,6 +241,18 @@ const UserAddEdit = (props) => {
                                 <Input
                                     prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder="Gender"
+                                    maxLength={100}
+                                />,
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('phone', {
+                                rules: [{ required: true, message: 'Please input your phone!' }],
+                                initialValue: initData ? initData.phone: null
+                            })(
+                                <Input
+                                    prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder="Phone"
                                     maxLength={100}
                                 />,
                             )}

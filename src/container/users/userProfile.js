@@ -19,9 +19,19 @@ const UserProfileView = (props) => {
     const { 
         userEditGet,
         loadingEdit,
-        userEdit
+        userEdit,
+        listDelete
     } = props
     
+
+    const handleDelete = async (id) => {
+        //const list = await initData.filter(val => val.id !== id)
+        listDelete(id);
+        
+        
+        //window.location.reload(true);
+       
+    }
     useEffect(() => {
         if(idParam && initData === false){
             userEditGet(idParam).then(val => {
@@ -61,7 +71,9 @@ const UserProfileView = (props) => {
 
     return (
         <Container>
-            <HeaderCustomer title={"Profile "+initData.name} text="BACK" link="/users/userList" path ={initData.id}/>
+            <HeaderCustomer title={"Profile "+initData.name} text="BACK" link="/users/userList" path ={initData.id} func={{
+                    delete: (id) => handleDelete(initData.id),
+                }} />
             <div className="profile-profile">
                 <div className= "left-info">
                     <img id={objectArray[0] }  src={objectArray[1]} alt={objectArray[2]}/>
@@ -111,7 +123,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {    
-        userEditGet: (params) => dispatch(actions.getUserEditData(params)),     
+        userEditGet: (params) => dispatch(actions.getUserEditData(params)),   
+        listDelete: (params) => dispatch(actions.userDelete(params)),    
     }
 }
 
