@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Avatar } from 'antd';
 import { ModalOrder,ActionOrder } from '../../components'
 import moment from 'moment';
+import { price } from '../convertPrice' 
 
 const TableList = (props) => {
     const { func } = props
@@ -68,7 +69,7 @@ const TableList = (props) => {
             //ID: i + 1,
             ID: val.id,
             Name: val.shipName,
-            Total: val.totalPrice ,
+            Total: price(val.totalPrice) +" VND" ,
             Status: is_order ,
             Date: moment(val.approvalDate).format('DD/MM/YYYY HH:mm:ss'),
             imagePath: <Avatar src={ val.imagePath ? val.imagePath : null} icon="shop" />,

@@ -70,7 +70,7 @@ const ProductAddEdit = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
-            alert("1")
+            //alert("1")
             // if(productDescription.match('<p></p>')){
 
             //     alert("2")
@@ -80,11 +80,11 @@ const ProductAddEdit = (props) => {
             // }
 
             if (!err ) {
-                alert("3")
+                //alert("3")
 
                 if(idParam){
 
-                    alert("4")
+                    //alert("4")
 
                     let formData = new FormData()
                     // formData.append('productNames', values.productName)
@@ -95,27 +95,27 @@ const ProductAddEdit = (props) => {
 
 
                      var productDataEdit =   {
-                          "categoryID": 0,
-                          "name": "string",
-                          "description": "string",
-                          "price": 0,
-                          "detail": "string",
+                          "categoryID": values.categoryID,
+                          "name": values.name,
+                          "description": values.description,
+                          "price": values.price,
+                          "detail": values.detail,
                           "status": true,
-                          "topHot": (d.getTime()).toString(),
+                          "topHot": null,
                           "viewCount": 0,
                           "productDetail": [
                             {
-                              "size": 0,
+                              "size": values.size,
                               "quantity": values.quantity,
                               "currentQuantity": 0,
                               "originQuantity": 0
                             }
                           ]
                         }
-                    var myJSON = JSON.stringify(productDataEdit);
+                    //var myJSON = JSON.stringify(productDataEdit);
 
                     try {
-                        const saveData =  await productEdit(myJSON,idParam)
+                        const saveData =  await productEdit(productDataEdit,idParam)
                         // if (imageFile !== null && !!saveData.id) {
                         //     await handleUpload(saveData.id)
                         // }
@@ -128,19 +128,20 @@ const ProductAddEdit = (props) => {
                                 onCancel() { },
                             });
                         } else{
-                            Modal.error({
-                                content: 'please check productName duplicate',
-                            });
+                            //Modal.error({
+                                //content: 'please check productName duplicate',
+                            //});
+                            props.history.push('/products/productList')
                         }
                     } catch (error) {
 
-                        alert("5")
+                        //alert("5")
                         throw error
     
                     }
                 }else{
 
-                    alert("6")
+                    //alert("6")
                     // let formData = new FormData()
                     // formData.append('productNames', values.productName)
                     // formData.append('productQuantitys', values.productQuantity)
@@ -153,7 +154,7 @@ const ProductAddEdit = (props) => {
                           "price": values.price,
                           "detail": values.detail,
                           "status": true,
-                          "topHot": (d.getTime()).toString(),
+                          "topHot": null,
                           "viewCount": 0,
                           "productDetail": [
                             {
@@ -164,7 +165,7 @@ const ProductAddEdit = (props) => {
                             }
                           ]
                         };
-                    var myJSON = JSON.stringify(productDataCreate);
+                    //var myJSON = JSON.stringify(productDataCreate);
                     try {
                         const saveData =  await save(productDataCreate)
                         // if (imageFile !== null && !!saveData.id) {
@@ -172,7 +173,7 @@ const ProductAddEdit = (props) => {
                         // }
                         if(saveData) {
 
-                            alert("7")
+                            //alert("7")
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
@@ -181,20 +182,22 @@ const ProductAddEdit = (props) => {
                                 onCancel() { },
                             });
                         } else{
-                            Modal.error({
-                                content: 'please check productName duplicate',
-                            });
+                            //Modal.error({
+                               // content: 'please check productName duplicate',
+                            //});
+                            props.history.push('/products/productList')
                         }
                     } catch (error) {
 
-                        alert("8")
+                        //alert("8")
                         throw error
                     }
                 }
             }else{
 
-                alert("9")
+                //alert("9")
                 //setValidate(false)
+                props.history.push('/products/productList')
             }
         });
     };

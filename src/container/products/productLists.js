@@ -13,7 +13,7 @@ const ProductList = (props) => {
     const { 
         list, 
         dataList,
-        listDelete,
+        //listDelete,
         listSearch,
     } = props
     const { loading, status } = dataList
@@ -34,11 +34,11 @@ const ProductList = (props) => {
         }
     }
 
-    const handleDelete = async (_id) => {
-        const list = await dataList.list.filter(val => val._id !== _id)
+    // const handleDelete = async (_id) => {
+    //     const list = await dataList.list.filter(val => val._id !== _id)
         
-        (_id, list)
-    }
+    //     (_id, list)
+    // }
 
  
     useEffect(() => {
@@ -96,8 +96,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         list: () => dispatch(actions.productFetch()),
-        listDelete: (params, list) => dispatch(actions.productDelete(params, list)),
-        listSearch: (text) => dispatch(actions.productSearch(text))
+        //listDelete: (params, list) => dispatch(actions.productDelete(params, list)),
+        //listSearch: (text) => dispatch(actions.productSearch(text))
     }
 }
 

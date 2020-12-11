@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Header, TableCustomer } from '../../components'
+import { Header } from '../../components'
 import { Container, NewInput, Flex } from '../../components/style'
 import { Icon } from 'antd';
 import { connect } from 'react-redux'
@@ -33,10 +33,10 @@ const UserList = (props) => {
         }
     }
 
-    const handleDelete = async (id) => {
-        const list = await dataList.list.filter(val => val.id !== id)
-        listDelete(id, list)
-    }
+    // const handleDelete = async (id) => {
+    //     const list = await dataList.list.filter(val => val.id !== id)
+    //     listDelete(id, list)
+    // }
 
  
     useEffect(() => {
@@ -54,7 +54,7 @@ const UserList = (props) => {
             }
         })*/
     //const [products ] = useState(dataList.list)
-    console.log("product abc"+dataList.list)
+    //console.log("product abc"+dataList.list)
 
 
     return (
@@ -74,7 +74,7 @@ const UserList = (props) => {
                                 { 
                                     dataList.list.map( user => <User key={user.id} user={user} /> )
                                 } 
-                                  
+
                             </div>              
                         
                     </div>

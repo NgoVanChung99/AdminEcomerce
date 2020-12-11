@@ -48,6 +48,7 @@ export const ImageUploadFile = styled.img`
     height: 300px;
     display:flex;
     width:100%;
+    min-width:300px;
 `
 
 export const FlexLogin = styled.div`

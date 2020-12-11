@@ -7,6 +7,6 @@ first command
 3. npm start
 
 user for login
-user maysporer2@gmai.com
+user admin@gmail.com
 pass 123456789
 

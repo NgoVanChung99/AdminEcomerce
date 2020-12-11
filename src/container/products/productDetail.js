@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 // import { Lazy } from 'react-lazy'
 // import { price } from '../../config'
 
@@ -7,17 +7,17 @@ class ProductDetail extends Component {
     
     render() {
         const { productMedias } = this.props
-        var objectArray = []
+        // var objectArray = []
 
-        if(productMedias.media != null){
-            objectArray = Object.values(productMedias.media);
-            // console.log(objectArray[0]); 
-            // console.log(objectArray[1]); 
-            // console.log(objectArray[2]); 
-        }
-        else{
+        // if(productMedias.media != null){
+        //     objectArray = Object.values(productMedias.media);
+        //     // console.log(objectArray[0]); 
+        //     // console.log(objectArray[1]); 
+        //     // console.log(objectArray[2]); 
+        // }
+        // else{
 
-        }
+        // }
         
         return (
             

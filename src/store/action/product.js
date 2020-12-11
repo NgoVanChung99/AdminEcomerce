@@ -45,7 +45,7 @@ export const productFetchCategory = (params) => {
 
 export const productAddAsync = (params) => {
     return dispatch => {
-        alert("add product"+params)
+        //alert("add product"+params)
         dispatch(productAdd())
         try {
             return service().post('/api/Admin/Product', params).then((val) => {
@@ -62,6 +62,7 @@ export const productAddAsync = (params) => {
 }
 
 export const productAddImage = (formData) => {
+    console.log("upload img "+formData)
     return () => {
         try {
             return service().post('/image_upload', formData, {
@@ -124,11 +125,13 @@ export const getProductEditData = (params) => {
 
 export const productEditAsync = (params,id) => {
     return dispatch => {
+        alert("edit product")
+        
         dispatch(productAdd())
         try {
             return service().put(`/api/Admin/Product/${id}`, params).then((val) => {
                 dispatch(productSave(true))
-                return {status: true, id: val.data._id}
+                return {status: true, id: val.data.id}
             }).catch(() => {
                 dispatch(productSave(false))
                 return false

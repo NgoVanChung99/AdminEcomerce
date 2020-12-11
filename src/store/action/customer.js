@@ -77,6 +77,7 @@ export const userSearch = (text) => {
 
 export const userDelete = (id, list) => {
     return dispatch => {
+        alert("id delete"+id)
         dispatch(userStart('delete'))
         try {
             service().delete(`/api/Admin/User/${id}`, ).then(() => {
@@ -113,7 +114,7 @@ export const userEditAsync = (params) => {
         try {
             return service().post('/product_update', params).then((val) => {
                 dispatch(userSave(true))
-                return {status: true, id: val.data._id}
+                return {status: true, id: val.data.id}
             }).catch(() => {
                 dispatch(userSave(false))
                 return false

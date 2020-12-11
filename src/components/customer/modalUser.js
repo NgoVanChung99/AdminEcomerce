@@ -16,8 +16,11 @@ const ModalShow = (props) => {
           onOk() {
             return new Promise((resolve, reject) => {
               setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+              alert("123")
               funcs()
-              props.history.push('users/userList')
+              console.log("23")
+              //props.history.push('/users/userList')
+              console.log("32")
               window.location.reload(true);
             }).catch(() => console.log('Oops errors!'));
           },

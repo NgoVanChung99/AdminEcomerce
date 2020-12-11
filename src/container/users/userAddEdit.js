@@ -46,7 +46,7 @@ const UserAddEdit = (props) => {
     }
 
     const handleSubmit = e => {
-        alert("1")
+        //alert("1")
 
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
@@ -79,13 +79,13 @@ const UserAddEdit = (props) => {
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
-                                    props.history.push('/products/productList')
+                                    props.history.push('/users/userList')
                                 },
                                 onCancel() { },
                             });
                         } else{
                             Modal.error({
-                                content: 'please check productName duplicate',
+                                content: 'please check user duplicate',
                             });
                         }
                     } catch (error) {
@@ -257,7 +257,7 @@ const UserAddEdit = (props) => {
                                 />,
                             )}
                         </Form.Item>
-                        
+                        <input type="submit" value="Submit" onSubmit={handleSubmit}/>
                     </Col>
                 </Row>
             </Form>

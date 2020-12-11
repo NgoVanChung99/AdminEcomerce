@@ -6,7 +6,7 @@ import { Form, Icon, Input, Row, Col, Modal } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
-//import './productView.css'
+import './user.css'
 import avartar from '../profile/3.jpg'
 
 
@@ -45,9 +45,7 @@ const UserProfileView = (props) => {
 
         if(initData.avatar != null){
             objectArray = Object.values(initData.avatar);
-             //console.log(objectArray[0]); 
-             //console.log(objectArray[1]); 
-             //console.log(objectArray[2]); 
+             
         }
         else{
 
@@ -76,7 +74,7 @@ const UserProfileView = (props) => {
                 }} />
             <div className="profile-profile">
                 <div className= "left-info">
-                    <img id={objectArray[0] }  src={objectArray[1]} alt={objectArray[2]}/>
+                    <img id="avatar-img"  src={objectArray[1]} alt={objectArray[2]}/>
                     <h2 className="name">{initData.name}</h2>
                     <h3 className="id">User ID : {initData.id}</h3>
                     <a href={`/user/changePassword/${initData.id}`} >Change password</a>
@@ -95,10 +93,7 @@ const UserProfileView = (props) => {
                             <h3 className="lable-info">CreatedDate :  </h3>
                             <h3 className="value-info">{initData.createdDate}</h3>
                         </div>
-                        <div className="Address">
-                            <h3 className="lable-info">Address :  </h3>
-                            <h3 className="value-info">{initData.address}</h3>
-                        </div>
+                        
                         <div className="Gender">
                             <h3 className="lable-info">Gender :  </h3>
                             <h3 className="value-info">{gender_tmp}</h3>
@@ -130,3 +125,8 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form.create({ name: 'UserAdd' })(withRouter(UserProfileView)))
+
+// <div className="Address">
+//      <h3 className="lable-info">Address :  </h3>
+//      <h3 className="value-info">{initData.address}</h3>
+// </div>

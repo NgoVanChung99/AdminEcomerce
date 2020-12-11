@@ -27,7 +27,7 @@ const Admin = ({ children, onLogout, history }) => {
           <Menu>
             <Menu.Item>
                 <Link to="/admin/profile">
-                    <Icon type="user" />
+                    <Icon type="user" style={{ marginRight: "0.5rem" }}/>
                     <span>Profile</span>           
                 </Link>
             </Menu.Item>

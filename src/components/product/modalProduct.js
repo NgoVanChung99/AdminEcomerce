@@ -19,7 +19,8 @@ const ModalShow = (props) => {
               funcs()
               props.history.push('/products/productList')
               window.location.reload(true);
-            }).catch(() => console.log('Oops errors!'));
+              //console.log("12")
+            }).catch((err) => console.log('Oops errors!',err));
           },
           onCancel() { },
         })

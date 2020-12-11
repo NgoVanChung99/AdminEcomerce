@@ -9,8 +9,8 @@ import * as actions from '../../store/action'
 import './category.css'
 
 const CategoryAddEdit = (props) => {
-    const [categoryDescription, setCategoryDescription] = useState("")
-    const [setValidate] = useState(true)
+    //const [categoryDescription, setCategoryDescription] = useState("")
+    //const [setValidate] = useState(true)
     const [initData, setInit] = useState(false)
     const idParam = props.match.params.id
     const { 
@@ -107,7 +107,7 @@ const CategoryAddEdit = (props) => {
                     //alert("create")
                     try {
                         //console.log(formData)
-                        var objectData =   
+                        var objectDataCreate =   
                         {                                                          
                                   "name": values.name,
                                   "metaTitle": "string",
@@ -122,7 +122,7 @@ const CategoryAddEdit = (props) => {
                         };
                         
                                                         
-                        const saveData =  await save(objectData)
+                        const saveData =  await save(objectDataCreate)
 
                         //console.log("objectData"+objectData)
                         if(saveData) {
@@ -158,7 +158,7 @@ const CategoryAddEdit = (props) => {
             categoryEditGet(idParam).then(val => {
                 setInit(val)
                 console.log("val"+val.id)
-                setCategoryDescription(val.id)
+                //setCategoryDescription(val.id)
             })
             //setValidate(true)
         }

@@ -7,13 +7,40 @@
     display: flex;
     width: 100%;
 }
-.right-info {
+.right-info-product {
 	width: 60%;
 	padding-left: 10px;
-	float: right;
+	float: left;
+	padding-top: 50px;
+	text-align: left;
+}
+.left-info-product {
+	width: 40%;
+	padding-left: 10px;
+	float: left;
 	padding-top: 50px;
 }
+.name-info-info  {
+	font-size: 30px;
+	color: black;
 
+}
+.price .name-info-info-price {
+	padding-top: 20px;
+	font-size: 20px;
+	color: black;
+	padding-bottom: 20px;
+}
+.title-product {
+	font-size: 20px;
+	color: black;
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+.product-details-Created-date {
+	font-size: 20px;
+	color: black;
+}
 /*h3{
 	float: left;
 	width: 50%;

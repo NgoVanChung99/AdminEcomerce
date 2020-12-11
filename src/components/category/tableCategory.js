@@ -17,11 +17,11 @@ const TableList = (props) => {
             dataIndex: 'Name',
             key: 'Name',
         },
-        {
-            title: 'DisplayOrder',
-            dataIndex: 'DisplayOrder',
-            key: 'DisplayOrder',
-        },
+        // {
+        //     title: 'DisplayOrder',
+        //     dataIndex: 'DisplayOrder',
+        //     key: 'DisplayOrder',
+        // },
         {
             title: 'Date',
             dataIndex: 'Date',
@@ -46,7 +46,7 @@ const TableList = (props) => {
             //ID: i + 1,
             ID: val.id,
             Name: val.name,
-            DisplayOrder: val.displayOrder,
+            //DisplayOrder: val.displayOrder,
             Date: moment(val.createdDate).format('DD/MM/YYYY HH:mm:ss'),
             Product: <Link to={`/categories/${val.id}/product`} >View</Link>,
             Action: <div><Link to={`/categories/categoryAddEdit/${val.id}`}><ModalCategory icon="edit" /></Link><ModalCategory icon="delete" funcs={() =>

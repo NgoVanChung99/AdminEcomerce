@@ -20,7 +20,7 @@ const ProductListCategory = (props) => {
     } = props
     const { loading, status } = dataList
 
-    
+    console.log("dataList"+dataList)
     let timeout;
 
     const handleSearch = (e) => {
