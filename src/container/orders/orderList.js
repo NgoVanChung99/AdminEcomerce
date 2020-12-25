@@ -88,7 +88,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         list: () => dispatch(actions.orderFetch()),
-        listDelete: (params, list) => dispatch(actions.productDelete(params, list)),
+        listDelete: (params, list) => dispatch(actions.orderDelete(params, list)),
         listAccept : (params, list) => dispatch(actions.orderActionAccept(params, list)),
         listRefuse : (params, list) => dispatch(actions.orderActionRefuse(params, list)),
         listSearch: (text) => dispatch(actions.productSearch(text))

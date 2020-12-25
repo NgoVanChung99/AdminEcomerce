@@ -21,41 +21,23 @@ const CategoryAddEdit = (props) => {
         categoryEdit
     } = props
     const { getFieldDecorator } = props.form;
-    // const hend =() =>{
-    //     console.log("afaf")
-    // }
+    
     const handleSubmit = e => {
 
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
-            //alert("v"+values)
-            // if(categoryDescription.match('<p></p>')){
-            //     alert("ok")
-            //     setValidate(false)
-            //     return
-            // }
+            
 
             if (!err ) {
                 //alert("edit")
                 if(idParam){
-                    //let formData = new FormData()
-                    // formData.append('name', values.name)
-                    // formData.append('metaTitle', values.metaTitle)
-                    // formData.append('parentID', values.parentID)
-                    // formData.append('displayOrder', values.displayOrder)
-                    // formData.append('seoTitle', values.seoTitle)
-                    // formData.append('metaKeywords', values.metaKeywords)
-                    // formData.append('metaDescriptions', values.metaDescriptions)
-                    // formData.append('status', values.status)
-                    // formData.append('language', values.language)
-                    // formData.append('categoryDescriptions', categoryDescription)
-                    // formData.append('id', props.match.params.id)
+                    
                     try {
                         //const saveData =  await categoryEdit(formData,idParam)
                         var objectData = {
                                 "name": values.name,
-                                "metaTitle": values.metaTitle,
-                                "parentID": values.parentID,
+                                "metaTitle": "metaTitle",
+                                "parentID": 0,
                                 "displayOrder": values.displayOrder,
                                 "seoTitle": "string",
                                 "metaKeywords": "string",
@@ -70,21 +52,22 @@ const CategoryAddEdit = (props) => {
                         console.log("formDatas"+objectData)
                         if(saveData) {
 
-                            //alert("create 242")
+                            alert("create 242")
 
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
-                                    props.history.push('categories/categoryList')
+                                    props.history.push('/categories/categoryList')
                                 },
                                 onCancel() { },
                             });
                         } else{
+                            props.history.push('/categories/categoryList')
                             //alert("lo3")
 
-                            Modal.error({
-                                content: 'please check CategoryForm duplicate',
-                            });
+                            // Modal.error({
+                            //     content: 'please check CategoryForm duplicate',
+                            // });
                         }
                     } catch (error) {
                         throw error
@@ -92,27 +75,15 @@ const CategoryAddEdit = (props) => {
                     }
                 }else{ 
 
-                    // let formData = new FormData()
-                    // formData.append('name', values.name)
-                    // formData.append('metaTitle', values.metaTitle)
-                    // formData.append('parentID', values.parentID)
-                    // formData.append('displayOrder', values.displayOrder)
-                    // formData.append('seoTitle', values.seoTitle)
-                    // formData.append('metaKeywords', values.metaKeywords)
-                    // formData.append('metaDescriptions', values.metaDescriptions)
-                    // formData.append('status', values.status)
-                    // formData.append('showOnHome', values.showOnHome)
-                    // formData.append('language', values.language)
-                    // formData.append('categoryDescriptions', categoryDescription)
-                    //alert("create")
+                    
                     try {
-                        //console.log(formData)
+                        
                         var objectDataCreate =   
                         {                                                          
                                   "name": values.name,
                                   "metaTitle": "string",
                                   "parentID": 0,
-                                  "displayOrder": 0,
+                                  "displayOrder": values.displayOrder,
                                   "seoTitle": "string",
                                   "metaKeywords": "string",
                                   "metaDescriptions": "string",
@@ -130,11 +101,12 @@ const CategoryAddEdit = (props) => {
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
-                                    props.history.push('categories/categoryList')
+                                    props.history.push('/categories/categoryList')
                                 },
                                 onCancel() { },
                             });
                         } else{
+                            props.history.push('/categories/categoryList')
                             //alert("loi 2")
                             //Modal.error({
                                 //content: 'please check CategoryForm duplicate',
@@ -157,7 +129,7 @@ const CategoryAddEdit = (props) => {
         if(idParam && initData === false){
             categoryEditGet(idParam).then(val => {
                 setInit(val)
-                console.log("val"+val.id)
+                //console.log("val"+val.id)
                 //setCategoryDescription(val.id)
             })
             //setValidate(true)
@@ -172,7 +144,7 @@ const CategoryAddEdit = (props) => {
                 <Header title={initData ? "CategoryEdit " + initData.name : "CategoryCreate"} text="BACK" link="/categories/categoryList" create={true} loading={loading}/>
                 <Row>   
                     <Col span={1}> </Col>                
-                    <Col span={20} style={{ position: "relative", top: 15 }}>   
+                    <Col span={15} style={{ position: "relative", top: 15 ,left: 100 }}>   
                         <Form.Item>
                             <label>Name</label>
                             {getFieldDecorator('name', {
@@ -186,16 +158,26 @@ const CategoryAddEdit = (props) => {
                                 />,
                             )}
                         </Form.Item>
+                        
+                        <Form.Item>
+                            <label>DisplayOrder</label>
+                            {getFieldDecorator('displayOrder', {
+                                rules: [{ required: true, message: 'Please input your displayOrder!' }],
+                                initialValue: initData ? initData.displayOrder: null
+                            })(
+                                <Input
+                                    prefix={<Icon type="shopping" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    type="number"
+                                    placeholder="DisplayOrder"
+                                    maxLength={10}
+                                />,
+                            )}
+                        </Form.Item>
 
                         
-
-
-                       
-
-                       
-
-    
-                
+                        
+                        
+                        
                         <input type="submit" value="Submit" onSubmit={handleSubmit}/>
 
                     </Col>
@@ -256,3 +238,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(Form.create({ name: 
                         
 
                         // 
+                        // <Form.Item>
+                        //     <label>Title</label>
+                        //     {getFieldDecorator('metaTitle', {
+                        //         rules: [{ required: true, message: 'Please input your metaTitle!' }],
+                        //         initialValue: initData ? initData.metaTitle: null
+                        //     })(
+                        //         <Input
+                        //             prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        //             placeholder="Meta Title"
+                        //             maxLength={100}
+                        //         />,
+                        //     )}
+                        // </Form.Item>

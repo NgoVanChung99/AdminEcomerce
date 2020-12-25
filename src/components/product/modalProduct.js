@@ -17,7 +17,8 @@ const ModalShow = (props) => {
             return new Promise((resolve, reject) => {
               setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
               funcs()
-              props.history.push('/products/productList')
+              //this.props.history.push('/products/productList')
+
               window.location.reload(true);
               //console.log("12")
             }).catch((err) => console.log('Oops errors!',err));

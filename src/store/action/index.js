@@ -18,9 +18,7 @@ export {
 export {
     categoryFetch,
     categoryDelete,
-    //categorySearch,
     categoryAddAsync,
-    // categoryAddImage,
      getCategoryEditData,
      categoryEditAsync
 } from './category'

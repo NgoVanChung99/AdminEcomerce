@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { HeaderProduct, ImageUpload, TextEditor,TextValidate } from '../../components'
+import { HeaderProduct, ImageUpload,TextValidate } from '../../components'
 import { Container } from '../../components/style'
-import { Form, Icon, Input, Row, Col, Modal } from 'antd';
+import { Form, Icon } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
 import './productView.css'
-import ProductDetail from './productDetail'
+//import ProductDetail from './productDetail'
 
 
 const ProductView = (props) => {
@@ -27,8 +27,9 @@ const ProductView = (props) => {
 
     const handleDelete = async (id) => {
         //const list = await initData.filter(val => val.id !== id)
+
         listDelete(id);
-        
+        props.history.push('/products/productList')
         
         //window.location.reload(true);
        

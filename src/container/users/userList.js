@@ -12,7 +12,6 @@ const UserList = (props) => {
     const { 
         list, 
         dataList,
-        listDelete,
         listSearch,
     } = props
     const { loading, status } = dataList
@@ -94,7 +93,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         list: () => dispatch(actions.userFetch()),
-        listDelete: (params, list) => dispatch(actions.userDelete(params, list)),
+  
         listSearch: (text) => dispatch(actions.userSearch(text))
     }
 }

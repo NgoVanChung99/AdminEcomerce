@@ -27,7 +27,7 @@ const UserProfileView = (props) => {
     const handleDelete = async (id) => {
         //const list = await initData.filter(val => val.id !== id)
         listDelete(id);
-        
+        props.history.push('/users/userList')
         
         //window.location.reload(true);
        

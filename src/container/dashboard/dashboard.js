@@ -3,7 +3,7 @@ import React  from 'react';
 import { Container } from '../../components/style'
 
 import { connect } from 'react-redux'
-import * as actions from '../../store/action'
+// import * as actions from '../../store/action'
 
 
 

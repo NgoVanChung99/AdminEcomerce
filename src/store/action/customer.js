@@ -1,18 +1,6 @@
 import * as actionTypes from './actionTypes'
 import service from '../../util/axiosInstance.js'
-// export const productFetch = () => {
-//     return dispatch => {
-//         dispatch(productStart())
-//         try {
-//             service().get('/product_list').then((val) => {
-//                 dispatch(productSuccess(val.data))
-//                 console.log("product123"+val.data)
-//             })
-//         } catch (error) {
-//             throw error
-//         }
-//     }
-// }
+
 export const userFetch = () => {
     return dispatch => {
         dispatch(userStart())
@@ -29,7 +17,7 @@ export const userFetch = () => {
 //http://3.25.210.151/api/admin/user?limit=100
 export const userAddAsync = (params) => {
     return dispatch => {
-        alert("add user")
+        //alert("add user")
         dispatch(userAdd())
         try {
             return service().post('/api/Admin/User', params).then((val) => {
@@ -66,7 +54,7 @@ export const userAddImage = (formData) => {
 export const userSearch = (text) => {
     return dispatch => {
         try {
-            service().get(`/product_search?productName=${text}`).then((val) => {
+            service().get(`/user=${text}`).then((val) => {
                 dispatch(userSuccess(val.data))
             })
         } catch (error) {
@@ -77,14 +65,17 @@ export const userSearch = (text) => {
 
 export const userDelete = (id, list) => {
     return dispatch => {
-        alert("id delete"+id)
+        //alert(id)
         dispatch(userStart('delete'))
         try {
+            //alert("xoa on"+id)
             service().delete(`/api/Admin/User/${id}`, ).then(() => {
+                //alert("xoa"+id)
                 dispatch(userSuccess(list, 'delete'))
                 dispatch(userStatusDelete(true))
             }).catch(() => dispatch(userStatusDelete(false)))
         } catch (error) {
+            alert("loi")
             dispatch(userStatusDelete(false))
         }
     }
@@ -108,11 +99,11 @@ export const getUserEditData = (params) => {
     }
 }
 
-export const userEditAsync = (params) => {
+export const userEditAsync = (params , id) => {
     return dispatch => {
         dispatch(userAdd())
         try {
-            return service().post('/product_update', params).then((val) => {
+            return service().post('/api/Admin/User', params).then((val) => {
                 dispatch(userSave(true))
                 return {status: true, id: val.data.id}
             }).catch(() => {

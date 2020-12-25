@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { HeaderAdmin, Table } from '../../components'
-import { Container, NewInput, Flex } from '../../components/style'
-import { Icon } from 'antd';
+import React, { useEffect } from 'react';
+import { HeaderAdmin } from '../../components'
+import { Container } from '../../components/style'
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
-import { MarginLeft, AlertStyle } from '../../components/style'
-import avartar from './3.jpg'
+
 import './profile.css'
 
 
 const Profile = (props) => {
     const {  list ,dataList  } = props
-    const { loading, status } = dataList
+    //const { loading, status } = dataList
     
 
     useEffect(() => {

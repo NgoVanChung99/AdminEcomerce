@@ -42,7 +42,6 @@ export const auth = (email, password, isSignup) => {
             password: password,
         }
         service().post('/api/Admin/auth/Login', authData)
-        //service().post('/signin', authData)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 dispatch(authSuccess(res.data.token))

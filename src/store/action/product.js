@@ -1,19 +1,7 @@
 import * as actionTypes from './actionTypes'
 //import service from '../../util/testproduct.js'
 import service from '../../util/axiosInstance.js'
-// export const productFetch = () => {
-//     return dispatch => {
-//         dispatch(productStart())
-//         try {
-//             service().get('/product_list').then((val) => {
-//                 dispatch(productSuccess(val.data))
-//                 console.log("product123"+val.data)
-//             })
-//         } catch (error) {
-//             throw error
-//         }
-//     }
-// }
+
 export const productFetch = () => {
     return dispatch => {
         dispatch(productStart())
@@ -34,7 +22,7 @@ export const productFetchCategory = (params) => {
         dispatch(productStart())
         try {
             service().get(`/api/Admin/Category/${params}/Product/`).then((val) => {
-                dispatch(productSuccess(val.data))
+                dispatch(productSuccess(val.data.products))
                 //console.log("media"+val.data.media)
             })
         } catch (error) {

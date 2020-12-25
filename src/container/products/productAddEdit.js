@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { Header, ImageUpload, TextEditor,TextValidate } from '../../components'
+import { Header, ImageUpload } from '../../components'
 import { Container } from '../../components/style'
 import { Form, Icon, Input, Row, Col, Modal } from 'antd';
 import { withRouter } from 'react-router-dom'
@@ -45,7 +45,7 @@ const ProductAddEdit = (props) => {
             throw error
         }
     }
-    var d = new Date();
+    
     var objectArray = []
 
         if(initData.media != null){
@@ -70,28 +70,16 @@ const ProductAddEdit = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
-            //alert("1")
-            // if(productDescription.match('<p></p>')){
-
-            //     alert("2")
-
-            //     setValidate(false)
-            //     return
-            // }
+            
 
             if (!err ) {
-                //alert("3")
+               
 
                 if(idParam){
 
-                    //alert("4")
-
+                    
                     let formData = new FormData()
-                    // formData.append('productNames', values.productName)
-                    // formData.append('productQuantitys', values.productQuantity)
-                    // //formData.append('productDescriptions', productDescription)
-                    // formData.append('imagePath', initData.imagePath)
-                    // formData.append('id', props.match.params.id)
+                    
 
 
                      var productDataEdit =   {

@@ -5,7 +5,7 @@ export const orderFetch = () => {
     return dispatch => {
         dispatch(orderStart())
         try {
-            service().get('/api/admin/AdminOrder?offset=1&limit=20').then((val) => {
+            service().get('/api/admin/AdminOrder?offset=1&limit=100').then((val) => {
                 dispatch(orderSuccess(val.data.orders))
                 //console.log("order"+val.data.orders)
             })
@@ -72,7 +72,7 @@ export const orderActionRefuse = (params) => {
             return service().put(`/api/admin/AdminOrder?id=${params}&isActive=false`).then((val) => {
                 //alert("orderActionRefuse"+params)
                 dispatch(orderSave(true))
-                return {status: true, id: val.data.categories.id}
+                return {status: true, id: val.data.orders.id}
             }).catch(() => {
                 dispatch(orderSave(false))
                 return false

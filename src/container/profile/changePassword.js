@@ -1,128 +1,52 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { Header, ImageUpload, TextEditor,TextValidate } from '../../components'
+import { Header } from '../../components'
 import { Container } from '../../components/style'
-import { Form, Icon, Input, Row, Col, Modal } from 'antd';
+import { Form, Icon, Input,  Col  } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
 
 const ChangePassWord = (props) => {
-    const [imageFile, setImageFile] = useState(null)
-    const [userDescription, setUserDescription] = useState("")
-    const [validate, setValidate] = useState(true)
+    //const [userDescription, setUserDescription] = useState("")
+    //const [validate, setValidate] = useState(true)
     const [initData, setInit] = useState(false)
     const idParam = props.match.params.id
     const { 
         save, 
         loading,
-        uploadImage,
         userEditGet,
         loadingEdit,
         userEdit
     } = props
     const { getFieldDecorator } = props.form;
 
-    const func = {
-        imageFile: (val) => setImageFile(val)
-    }
-
-    const handleUpload = async (_id) => {
-        let formData = new FormData()
-        formData.append('imagePath', imageFile)
-        formData.append('_id', _id)
-        try {
-            const saveData = await uploadImage(formData)
-            if(saveData) {
-                return true
-            } else{
-                Modal.error({
-                    content: 'please check imageFile',
-                });
-            }
-        } catch (error) {
-            throw error
-        }
-    }
+    
+    
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.form.validateFields(async (err, values) => {
-            if(userDescription.match('<p></p>')){
-                setValidate(false)
-                return
-            }
-
-            if (!err && userDescription !== "") {
-                if(idParam){
-                    let formData = new FormData()
-                    formData.append('productNames', values.productName)
-                    formData.append('productQuantitys', values.productQuantity)
-                    formData.append('productDescriptions', userDescription)
-                    formData.append('imagePath', initData.imagePath)
-                    formData.append('_id', props.match.params.id)
-                    try {
-                        const saveData =  await userEdit(formData)
-                        if (imageFile !== null && !!saveData.id) {
-                            await handleUpload(saveData.id)
-                        }
-                        if(saveData) {
-                            Modal.success({
-                                content: 'Successfully',
-                                onOk() {
-                                    props.history.push('/products/productList')
-                                },
-                                onCancel() { },
-                            });
-                        } else{
-                            Modal.error({
-                                content: 'please check productName duplicate',
-                            });
-                        }
-                    } catch (error) {
-                        throw error
+        // props.form.validateFields(async (err, values) => {
+        //     var dataUser = 
+        //     {
+        //       "email": "string",
+        //       "password": values.NewPassWord,
+        //       "name": "string",
+        //       "gender": true,
+        //       "phone": "string"
+        //     }
     
-                    }
-                }else{
-                    let formData = new FormData()
-                    formData.append('productNames', values.productName)
-                    formData.append('productQuantitys', values.productQuantity)
-                    formData.append('productDescriptions', userDescription)
-                    try {
-                        const saveData =  await save(formData)
-                        if (imageFile !== null && !!saveData.id) {
-                            handleUpload(saveData.id)
-                        }
-                        if(saveData) {
-                            Modal.success({
-                                content: 'Successfully',
-                                onOk() {
-                                    props.history.push('/products/productList')
-                                },
-                                onCancel() { },
-                            });
-                        } else{
-                            Modal.error({
-                                content: 'please check productName duplicate',
-                            });
-                        }
-                    } catch (error) {
-                        throw error
-                    }
-                }
-            }else{
-                setValidate(false)
-            }
-        });
+            
+        // }
     };
 
     useEffect(() => {
         if(idParam && initData === false){
             userEditGet(idParam).then(val => {
                 setInit(val)
-                setUserDescription(val.userDescription)
+                //setUserDescription(val.userDescription)
             })
-            setValidate(true)
+            //setValidate(true)
         }
     }, [initData])
 
@@ -142,6 +66,7 @@ const ChangePassWord = (props) => {
                                 <Input
                                     prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder="OldPassWord"
+                                    type="password"
                                     maxLength={100}
                                 />,
                             )}
@@ -154,6 +79,7 @@ const ChangePassWord = (props) => {
                                 <Input
                                     prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder="NewPassWord"
+                                    type="password"
                                     maxLength={100}
                                 />,
                             )}
@@ -165,6 +91,7 @@ const ChangePassWord = (props) => {
                                 <Input
                                     prefix={<Icon type="shop" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder="Enter the password"
+                                    type="password"
                                     maxLength={100}
                                 />,
                             )}
@@ -187,10 +114,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        save: (params) => dispatch(actions.userAddAsync(params)),
-        uploadImage: (params) => dispatch(actions.userAddImage(params)),
+        save: (params) => dispatch(actions.userEditAsync(params)),
         userEditGet: (params) => dispatch(actions.getUserEditData(params)),
-        userEdit: (params) => dispatch(actions.userEditAsync(params))
     }
 }
 

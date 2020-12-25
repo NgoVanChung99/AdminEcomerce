@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { Header, ImageUpload, TextEditor,TextValidate } from '../../components'
+import { Header, ImageUpload } from '../../components'
 import { Container } from '../../components/style'
 import { Form, Icon, Input, Row, Col, Modal } from 'antd';
 import { withRouter } from 'react-router-dom'
@@ -50,31 +50,32 @@ const UserAddEdit = (props) => {
 
         e.preventDefault();
         props.form.validateFields(async (err, values) => {
-            if(userDescription.match('<p></p>')){
-
-                //alert("2")
-
-                setValidate(false)
-                return
-            }
-
+            
             if (!err ) {
 
                 //alert("3")
                 if(idParam){
                     //alert("4")
 
-                    let formData = new FormData()
-                    formData.append('name', values.name)
-                    formData.append('productQuantitys', values.productQuantity)
-                    formData.append('userDescriptions', userDescription)
-                    formData.append('imagePath', initData.imagePath)
-                    formData.append('id', props.match.params.id)
+                    // let formData = new FormData()
+                    // formData.append('name', values.name)
+                    // formData.append('productQuantitys', values.productQuantity)
+                    // formData.append('userDescriptions', userDescription)
+                    // formData.append('imagePath', initData.imagePath)
+                    // formData.append('id', props.match.params.id)
+                    var UserEdit = 
+                        {
+                          "email": values.email,
+                          "password": values.password,
+                          "name": values.name,
+                          "gender": true,
+                          "phone": values.phone
+                        };
                     try {
-                        const saveData =  await userEdit(formData)
-                        if (imageFile !== null && !!saveData.id) {
-                            await handleUpload(saveData.id)
-                        }
+                        const saveData =  await userEdit(UserEdit,idParam)
+                        // if (imageFile !== null && !!saveData.id) {
+                        //     await handleUpload(saveData.id)
+                        // }
                         if(saveData) {
                             Modal.success({
                                 content: 'Successfully',
@@ -279,7 +280,7 @@ const mapDispatchToProps = dispatch => {
         save: (params) => dispatch(actions.userAddAsync(params)),
         uploadImage: (params) => dispatch(actions.userAddImage(params)),
         userEditGet: (params) => dispatch(actions.getUserEditData(params)),
-        userEdit: (params) => dispatch(actions.userEditAsync(params))
+        userEdit: (params,id) => dispatch(actions.userEditAsync(params,id))
     }
 }
 

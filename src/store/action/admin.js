@@ -8,7 +8,7 @@ export const AdminFetch = () => {
     return dispatch => {
         dispatch(adminStart())
         try {
-            axios.get("http://3.25.210.151/admin/profile", { 'headers': { 'Authorization': AuthStr } }).then((val) => {
+            axios.get("https://localhost:4001/admin/profile", { 'headers': { 'Authorization': AuthStr } }).then((val) => {
                 dispatch(adminSuccess(val.data))
                 //alert(val.data)
                 console.log("profile123"+val.data.name);

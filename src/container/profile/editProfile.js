@@ -182,7 +182,7 @@ const AdminEdit = (props) => {
 
                         <Form.Item>
                             {getFieldDecorator('phone', {
-                                rules: [{ required: true, message: 'Please input your prodcutName!' }],
+                                rules: [{ required: true, message: 'Please input your phone!' }],
                                 initialValue: initData ? initData.phone: null
                             })(
                                 <Input
@@ -194,7 +194,7 @@ const AdminEdit = (props) => {
                         </Form.Item>
                         <Form.Item>
                             {getFieldDecorator('email', {
-                                rules: [{ required: true, message: 'Please input your userName!' }],
+                                rules: [{ required: true, message: 'Please input your email!' }],
                                 initialValue: initData ? initData.email: null
                             })(
                                 <Input

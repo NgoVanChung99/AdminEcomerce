@@ -5,7 +5,7 @@ export const categoryFetch = () => {
     return dispatch => {
         dispatch(categoryStart())
         try {
-            service().get("/api/Admin/Category?limit=40").then((val) => {
+            service().get("/api/Admin/Category?limit=50").then((val) => {
                 console.log(val.data.categories)
                 dispatch(categorySuccess(val.data.categories))
             })
@@ -47,12 +47,7 @@ export const categoryAddAsync = (params) => {
         } catch (error) {
             throw error
         }
-        /*const name = "tt"
-            return service().post('/api/Admin/Category', {name}).then((val) => {
-                alert("aa")
-            }).catch((err) => {
-                alert(err)
-            })*/
+        
     }
 }
 export const categoryEditStart = (params) => {
@@ -67,7 +62,7 @@ export const categoryEditAsync = (params,id) => {
         dispatch(categoryAdd())
         try {
             return service().put(`/api/Admin/Category/${id}`, params).then((val) => {
-                alert("catEditAsyns"+params)
+                //alert("catEditAsyns"+params)
                 dispatch(categorySave(true))
                 return {status: true, id: val.data.categories.id}
             }).catch(() => {
@@ -86,7 +81,7 @@ export const getCategoryEditData = (params) => {
         try {
             return service().get(`/api/Admin/Category/${params}`).then((res) => {
                 dispatch(categoryEditGet())
-                console.log("getCategoryEditData"+res.data)
+                //console.log("getCategoryEditData"+res.data)
                 return res.data       
             }).catch(() => {
                 dispatch(categoryEditGet())

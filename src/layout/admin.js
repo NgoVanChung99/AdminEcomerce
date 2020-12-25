@@ -22,7 +22,7 @@ const Admin = ({ children, onLogout, history }) => {
        return;
     }
     
-///users/profile/1
+
     const menu = (
           <Menu>
             <Menu.Item>

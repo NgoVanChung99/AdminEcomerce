@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Lazy } from 'react-lazy'
-import {Icon} from  'antd'
+// import {Icon} from  'antd'
 // import { price } from '../../config'
 
 class User extends Component {
@@ -41,7 +41,3 @@ class User extends Component {
 }
 
 export default User;
-
-// <div className="action-icon">
-//     <Icon type="more" onClick ={console.log("ok")}/>  
-// </div>
