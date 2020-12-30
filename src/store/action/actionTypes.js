@@ -3,6 +3,10 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAIL = 'AUTH_FAIL'
 export const AUTH_LOGOUT = "AUTH_LOGOUT"
 
+export const RESET_START = 'Reset_START'
+export const RESET_SUCCESS = 'Reset_SUCCESS'
+export const RESET_FAIL = 'Reset_FAIL'
+
 
 
 export const PRODUCT_START = 'PRODUCT_START'

@@ -6,14 +6,16 @@ import { Form, Icon } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
-import './productView.css'
-//import ProductDetail from './productDetail'
+//import './productView.css'
+import ProductDetail from './productDetail'
+import './productview.scss'
+import { price } from '../../components/convertPrice.js'
 
 
 const ProductView = (props) => {
-    // const [imageFile, setImageFile] = useState(null)
+    
     const [productDescription, setProductDescription] = useState("")
-    // const [validate, setValidate] = useState(true)
+    
     const [initData, setInit] = useState(false)
     const idParam = props.match.params.id
     const { 
@@ -22,16 +24,16 @@ const ProductView = (props) => {
         productEdit,
         listDelete
     } = props
-    // const { getFieldDecorator } = props.form;
+    
 
 
     const handleDelete = async (id) => {
-        //const list = await initData.filter(val => val.id !== id)
+        
 
         listDelete(id);
         props.history.push('/products/productList')
         
-        //window.location.reload(true);
+        window.location.reload(true);
        
     }
 
@@ -62,14 +64,12 @@ const ProductView = (props) => {
         }
     }, [initData])
 
-//var temp = JSON.stringify(typ initData);
+
     var objectArray = []
 
         if(initData.media != null){
             objectArray = Object.values(initData.media);
-             //console.log(  objectArray[15][1].media); 
-             //console.log(objectArray[1]); 
-             //console.log(objectArray[2]); 
+             
         }
         else{
 
@@ -93,11 +93,6 @@ const ProductView = (props) => {
          }
 
    
-    //     }
-    //     else{
-
-    //     }
-
 
     return (
         <Container>
@@ -113,25 +108,27 @@ const ProductView = (props) => {
                             <img src={objectArray[1]} alt={objectArray[2]}/>  
                         </div>
                     </div>
-                    <div className= "right-info-product">
+                    <div className= "right-info">
                         <div className="info">
                             <div className="name-product">
-                                <div className="name-info-info"><b>Tên sản phẩm: </b><span> {initData.name}</span></div>
-
+                                <h3 className="name-info">{initData.name}</h3>
                             </div>
                             <div className="price">
-                                <div className="name-info-info-price"><span> {priceProduct} vnd</span></div>
-
+                                <h3 className="price-info">Giá: { price(initData.price)} VNĐ</h3>
                             </div>
                             <div className="title-product">
-                                <div className="title-info">Tiêu đề : <span className="title-title">{initData.description}</span></div>
-                                
+                                <h3 className="title-info"> Mô Tả Sản Phẩm: {initData.description}</h3>
                             </div>
-                            <div className="product-details-Created-date">
-                                <div >Created date : <span className="CreatedDate">{dateCreate}</span> </div>     
+                            {/* <div className="product-details">
+                                <h3 >CreatedDate </h3>   
+                                <h3 className="CreatedDate">{initData.createdDate}</h3> 
+                            </div> */}
+                            <div className="detail-id">
+                            <h1>Size và số lượng hiện tại:</h1>
+                            {
+                                objectArrayMediaDetail.map( productDetail => <ProductDetail key={productDetail.id} productDetail={productDetail} /> )
+                            }
                             </div>
-                            
-
                         </div>            
                     </div>
                 </div>

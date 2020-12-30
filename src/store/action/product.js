@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes'
 //import service from '../../util/testproduct.js'
 import service from '../../util/axiosInstance.js'
+import axios from 'axios';
 
 export const productFetch = () => {
     return dispatch => {
@@ -49,15 +50,17 @@ export const productAddAsync = (params) => {
     }
 }
 
-export const productAddImage = (formData) => {
-    console.log("upload img "+formData)
+
+
+//https://localhost:4001/api/Media/product-image?productId=1
+export const productAddImage = (params , id) => {
+    
+    console.log("upload img "+params)
+    let USER_TOKEN = localStorage.getItem('token')
+    const AuthStr = 'Bearer ' + USER_TOKEN;
     return () => {
         try {
-            return service().post('/image_upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            }).then((val) => {
+            return axios.put(`https://localhost:4001/api/Media/product-image?productId=${id}`, params, { 'headers': { 'Authorization': AuthStr } }).then((val) => {
                 return true
             }).catch(() => {
                 return false

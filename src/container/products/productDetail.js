@@ -6,7 +6,8 @@ import React, { Component  } from 'react';
 class ProductDetail extends Component {
     
     render() {
-        const { productMedias } = this.props
+        //const { productMedias } = this.props
+        const { productDetail } = this.props
         // var objectArray = []
 
         // if(productMedias.media != null){
@@ -21,16 +22,19 @@ class ProductDetail extends Component {
         
         return (
             
-            <div className="detail" key ={productMedias.id}>
-                <div className="id">
-                    <span>ID {productMedias.id}</span>
-                </div>
-                <div className="mediaID">
-                    <span>ID media {productMedias.mediaID}</span>
+            <div className="detail" key ={productDetail.id}>
+                {/* <div className="size">
+                    <span>Size {productDetail.size}</span>
+                </div> */}
+                <div><span>{productDetail.size}</span></div>
+                <div><span>{productDetail.currentQuantity}</span></div>
+                
+                {/* <div className="mediaID">
+                    <span>ID media {productDetail.mediaID}</span>
                 </div>
                 <div className="productID" >
-                    <span>product ID {productMedias.productID}</span>     
-                </div>
+                    <span>product ID {productDetail.productID}</span>     
+                </div> */}
 
             </div>
             

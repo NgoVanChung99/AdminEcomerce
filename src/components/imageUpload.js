@@ -38,6 +38,7 @@ const ImageUpload = (props) => {
                     loading: false,
                 }),
             );
+
         }
     };
 
@@ -55,6 +56,7 @@ const ImageUpload = (props) => {
                 imageUrl: props.imagePath
             })
         }
+        localStorage.setItem('imageUrl', imageUrl);
     },[props,imageUrl])
 
     return (

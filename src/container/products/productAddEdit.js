@@ -29,12 +29,17 @@ const ProductAddEdit = (props) => {
     }
 
     const handleUpload = async (id) => {
-        let formData = new FormData()
-        formData.append('imagePath', imageFile)
-        formData.append('id', id)
+        
+        const url = localStorage.getItem('imageUrl')
+       
+        var imageFileAdd = { 
+            "url": url,
+            "alt": "string"
+            };
         try {
-            const saveData = await uploadImage(formData)
+            const saveData = await uploadImage(imageFileAdd,id)
             if(saveData) {
+                
                 return true
             } else{
                 Modal.error({
@@ -50,9 +55,7 @@ const ProductAddEdit = (props) => {
 
         if(initData.media != null){
             objectArray = Object.values(initData.media);
-            // console.log(objectArray[0]); 
-            // console.log(objectArray[1]); 
-            // console.log(objectArray[2]); 
+             
         }
         else{
 
@@ -104,10 +107,18 @@ const ProductAddEdit = (props) => {
 
                     try {
                         const saveData =  await productEdit(productDataEdit,idParam)
-                        // if (imageFile !== null && !!saveData.id) {
-                        //     await handleUpload(saveData.id)
-                        // }
-                        if(saveData) {
+                        if (imageFile !== null && !!idParam) {
+                            alert(" edit imgage")
+                            const saveDataImage = await handleUpload(idParam)
+
+                        }
+                        else if (imageFile == null ) {
+                            alert("loi edit imgage")
+                            
+                        }
+
+
+                        if(saveData ) {
                             Modal.success({
                                 content: 'Successfully',
                                 onOk() {
@@ -157,8 +168,17 @@ const ProductAddEdit = (props) => {
                     try {
                         const saveData =  await save(productDataCreate)
                         // if (imageFile !== null && !!saveData.id) {
-                        //     handleUpload(saveData.id)
+                        //    // handleUpload(saveData.id)
+                        //    handleUpload(1)
                         // }
+                        if (imageFile !== null ) {
+                            alert(" add imgage")
+                            handleUpload(1)
+                        }
+                        if (imageFile == null ) {
+                            alert("loi add imgage")
+                            
+                        }
                         if(saveData) {
 
                             //alert("7")
@@ -346,7 +366,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         save: (params) => dispatch(actions.productAddAsync(params)),
-        uploadImage: (params) => dispatch(actions.productAddImage(params)),
+        uploadImage: (params , id) => dispatch(actions.productAddImage(params , id)),
         productEditGet: (params) => dispatch(actions.getProductEditData(params)),
         productEdit: (params,id) => dispatch(actions.productEditAsync(params,id))
     }

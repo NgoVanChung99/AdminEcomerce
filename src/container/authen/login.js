@@ -4,7 +4,8 @@ import { FlexLogin} from '../../components/style'
 import { Form, Icon, Input, Button, Card } from 'antd';
 import { connect } from 'react-redux'
 import * as actions from '../../store/action'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+
 
 const Login = (props) => {
     const [email, setEmail] = useState('')
@@ -30,20 +31,23 @@ const Login = (props) => {
 
     return (
             <FlexLogin>
-                <Card>
+                <Card style={{ width: 400  }}>
                     <Title>
                         Welcome
                     </Title>
                     <Form onSubmit={handleSubmit}>
                         <Form.Item>
+                        <div style={{ marginBottom: 16, marginTop : 40 }}>
                             <Input
                                 id="id"
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                 placeholder="Email"
                                 onChange={(e) => setEmail(e.target.value)}
-                            />
+                            />  
+                        </div>
                         </Form.Item>
                         <Form.Item>
+                        <div style={{ marginBottom: 16, marginTop : 20 }}>
                             <Input
                                 id="password"
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -51,7 +55,11 @@ const Login = (props) => {
                                 placeholder="Password"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            </div>
                         </Form.Item>
+
+                        
+
                         <Form.Item>
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }} loading={props.loading}>
                                 Log in

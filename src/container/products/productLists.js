@@ -34,28 +34,14 @@ const ProductList = (props) => {
         }
     }
 
-    // const handleDelete = async (_id) => {
-    //     const list = await dataList.list.filter(val => val._id !== _id)
-        
-    //     (_id, list)
-    // }
+    
 
  
     useEffect(() => {
         list()
     }, [list]);
 
-    console.log("page"+dataList.list.totalPage)
-
-    /*window.addEventListener('scroll', ()=>{
-            let scroll =  window.scrollY
-            if( scroll>0 ) {
-                this.setState({ top: '65px' })
-            } else {
-                this.setState({ top: '100px' })
-            }
-        })*/
-    //const [products ] = useState(dataList.list)
+    
 
 
     return (

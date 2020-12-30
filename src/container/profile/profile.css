@@ -40,3 +40,12 @@
 /*.right-info p{
 	float: left;
 }*/
+/*.photo img {
+	max-width: 300px;
+    height: 300px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}*/

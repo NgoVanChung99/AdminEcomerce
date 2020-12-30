@@ -50,7 +50,10 @@ const Profile = (props) => {
             <HeaderAdmin title="Profile" text="BACK" link="/dashboard" path ={dataList.list.id} />
             <div className="profile-profile">
                 <div className= "left-info">
-                    <img id={objectArray[0] }  src={objectArray[1]} alt={objectArray[2]}/>
+                    <div className ="photo">
+                        <img id={objectArray[0] }  src={objectArray[1]} alt={objectArray[2]}/>
+                    </div>
+                    
                     <h2 className="name">{dataList.list.name}</h2>
                     <h3 className="id">User ID : {dataList.list.id}</h3>
                     <a href={`/user/changePassword/${dataList.list.id}`} >Change password</a>
